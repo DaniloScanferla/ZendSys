@@ -1,0 +1,50 @@
+<?php
+
+namespace Produto\Form;
+
+use Zend\Form\Form;
+
+class Fornecedor extends Form{
+    
+    public function __construct($name = null){
+        parent::__construct('fornecedores');
+            
+        $this->setAttribute('method', 'post');
+        
+        $id = new \Zend\Form\Element\Hidden('id');
+        $this->add($id);
+        
+        $descricao = new \Zend\Form\Element\Text('descricao');
+        $descricao->setLabel('Descrição:')
+             ->setAttribute('placeholder', 'Entre com a descrição');
+        $this->add($descricao);
+        
+        $apelido = new \Zend\Form\Element\Text('apelido');
+        $apelido->setLabel('Apelido:')
+             ->setAttribute('placeholder', 'Entre com o apelido');
+        $this->add($apelido);
+        
+        $cnpj = new \Zend\Form\Element\Text('cnpj');
+        $cnpj->setLabel('CNPJ:')
+             ->setAttribute('placeholder', 'Entre com o CNPJ');
+        $this->add($cnpj);
+        
+        $endereco = new \Zend\Form\Element\Text('endereco');
+        $endereco->setLabel('Apelido:')
+             ->setAttribute('placeholder', 'Entre com o Endereço');
+        $this->add($endereco);
+        
+        $ativo = new \Zend\Form\Element\Checkbox("ativo");
+        $ativo->setLabel('Ativo:');
+        $this->add($ativo);
+        
+        $this->add(array(
+            'name' => 'submit',
+            'type' => 'Zend\Form\Element\Submit',
+            'attributes' => array(
+                'value' => 'Salvar',
+                'class' => 'btn-success'
+            )
+        ));
+    }
+}

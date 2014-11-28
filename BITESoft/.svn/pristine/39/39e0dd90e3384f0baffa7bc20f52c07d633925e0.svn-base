@@ -1,0 +1,13 @@
+<h3>Editar Tipo de Produto</h3>
+<br />
+
+<?php
+$form = $this->form;
+
+$form->setAttribute('action', $this->url("produto/default", array('controller'=>'tipos', 'action' => 'edit')));
+
+$form->prepare();
+echo $this->form()->openTag($form);
+echo $this->formCollection($form);
+echo $this->form()->closeTag();
+?>

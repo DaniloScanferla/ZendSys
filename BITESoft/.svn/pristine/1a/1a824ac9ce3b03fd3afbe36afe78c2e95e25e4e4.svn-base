@@ -1,0 +1,38 @@
+<?php
+
+namespace Produto\Service;
+
+use Doctrine\ORM\EntityManager;
+use Zend\Stdlib\Hydrator;
+use Base\Service\AbstractService;
+
+class Produto extends AbstractService{
+    
+    public function __construct(EntityManager $em){
+        parent::__construct($em);
+        $this->entity = "Produto\Entity\Produto"; 
+    }
+    
+    public function insert(array $data){
+        $entity = new $this->entity($data);
+        
+        $type = $this->em->getReference('Produto\Entity\Tipo', $data['type']);
+        $entity->setType($type);
+        
+        $this->em->persist($entity);
+        $this->em->flush();
+        return $entity;
+    }
+    
+    public function update(array $data){
+        $entity = $this->em->getReference($this->entity, $data['id']);
+        (new Hydrator\ClassMethods())->hydrate($data, $entity);
+        
+        $type = $this->em->getReference('Produto\Entity\Tipo', $data['type']);
+        $entity->setType($type);
+        
+        $this->em->persist($entity);
+        $this->em->flush();
+        return $entity;
+    }
+}

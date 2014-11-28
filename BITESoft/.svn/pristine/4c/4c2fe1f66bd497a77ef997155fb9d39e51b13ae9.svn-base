@@ -1,0 +1,40 @@
+<h3>Roles</h3>
+<br />
+
+<p>
+    <a href="<?php echo $this->url("acl-admin/default", array('controller' => 'roles', 'action'=>'new')); ?>">Novo</a>
+</p>
+    
+<table class="table">
+    <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Herança</th>
+        <th>Admin</th>
+        <th>Editar</th>
+        <th>Excluir</th>
+    </tr>
+    
+    <?php foreach($this->data as $entity): ?>
+    <tr>
+        <td><?php echo $entity->getId(); ?></td>
+        <td><?php echo $entity->getNome(); ?></td>
+        <td><?php echo $entity->getParent(); ?></td>
+        <td><?php echo $entity->getIsAdmin(); ?></td>
+        <td>
+                <a href="<?php echo $this->url('acl-admin/default',
+                        array('controller'=>'roles', 'action'=>'edit', 'id'=>$entity->getId())); ?>">Editar</a>
+            </td>
+            <td>
+                <a href="<?php echo $this->url('acl-admin/default',
+                        array('controller'=>'roles', 'action'=>'delete', 'id'=>$entity->getId())); ?>">Excluir</a>
+            </td>
+    </tr>
+    <?php endforeach; ?>
+</table>
+
+<br />
+
+<?php echo $this->paginationControl($this->data, 'Sliding', 'partials/paginator'); ?>
+
+

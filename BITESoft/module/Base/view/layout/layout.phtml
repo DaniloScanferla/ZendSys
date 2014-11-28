@@ -1,0 +1,108 @@
+<?php echo $this->doctype(); ?>
+
+<html lang="br">
+    <head>
+        <meta charset="utf-8">
+        <?php echo $this->headTitle('WMS '. $this->translate('- Home'))->setSeparator(' - ')->setAutoEscape(false) ?>
+
+        <?php echo $this->headMeta()
+            ->appendName('viewport', 'width=device-width, initial-scale=1.0')
+            ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
+        ?>
+
+        <!-- Le styles -->
+        <?php echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/favicon.ico'))
+                        ->prependStylesheet($this->basePath() . '/css/style.css')
+						->prependStylesheet($this->basePath() . '/css/bootstrap-theme.min.css')
+                        ->prependStylesheet($this->basePath() . '/css/bootstrap.min.css') ?>
+
+        <!-- Scripts -->
+        <?php echo $this->headScript()
+            ->prependFile($this->basePath() . '/js/bootstrap.min.js')
+            ->prependFile($this->basePath() . '/js/jquery.min.js')
+            ->prependFile($this->basePath() . '/js/respond.min.js', 'text/javascript', array('conditional' => 'lt IE 9',))
+            ->prependFile($this->basePath() . '/js/html5shiv.js',   'text/javascript', array('conditional' => 'lt IE 9',))
+        ; ?>
+       
+       <!-- FUNCAO PRA DEIXAR O ATIVAR A CLASSE ACTIVE DO BOOTSTRAP NO MENU -->
+		<script type="text/javascript">
+			/*menu handler*/
+			$(function() {
+				function stripTrailingSlash(str) {
+					if (str.substr(-1) == '/') {
+						return str.substr(0, str.length - 1);
+					}
+					return str;
+				}
+
+				var url = window.location.pathname;
+				var activePage = stripTrailingSlash(url);
+
+				$('.nav li a').each(function() {
+					var currentPage = stripTrailingSlash($(this).attr('href'));
+
+					if (activePage == currentPage) {
+						$(this).parent().addClass('active');
+					}
+				});
+			});
+
+		</script>
+		<!-- FIM FUNCAO PRA DEIXAR O ATIVAR A CLASSE ACTIVE DO BOOTSTRAP NO MENU -->
+
+    </head>
+    <body>
+    	 <?php if($this->userIdentity("User")): ?>
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="container-fluid ">
+                <div class="navbar-header">
+						<a class="navbar-brand" href="<?php echo $this->url('home') ?>">
+							<!--<span class="glyphicon glyphicon-home"></span>-->
+							
+							<strong> WMS </strong> 
+						</a>
+				</div>
+				<div class="navbar-btn navbar-right btn-group" style="padding-right: 15px">
+						<button class="btn btn-default dropdown-toggle " data-toggle="dropdown">
+							<span class="glyphicon glyphicon-user"></span>
+							<span class="caret"></span>
+							
+						</button>
+						<ul class="dropdown-menu" role="menu">
+							<li>
+								<a href="<?php echo $this->url('user-admin/default', array('controller' => 'users')) ?>"><span class="glyphicon glyphicon-cog"></span> Administrar Usuários</a>
+							</li>
+							<li class="divider"></li>
+							<li>
+								<a style="color: red" href="<?php echo $this->url('user-logout') ?>"><span class="glyphicon glyphicon-share"></span> Sair</a>
+							</li>
+						</ul>
+                </div>                     
+                
+                    <ul class="nav navbar-nav navbar">
+                        <li class="dropdown">
+	                        <a href="#" data-toggle="dropdown" class="dropdown-toggle"><span class="glyphicon glyphicon-th-large"></span> Produtos
+	                        	<b class="caret"></b>
+	                        </a>
+		                        <ul class="dropdown-menu">
+		                            <li><a href="<?php echo $this->url('produto/default', array('controller' => 'produtos'
+                                            )) ?>"><span class="glyphicon glyphicon-th-large"></span> Produto</a></li>
+		                            <li><a href="<?php echo $this->url('produto/default', array('controller' => 'tipos'
+                                            )) ?>"><span class="glyphicon glyphicon-sort-by-order"></span> Tipo</a></li>
+		                        </ul>
+                    	</li>
+                        <?php endif; ?>
+                    </ul>
+                
+            </div>
+        </nav>
+        <div class="container" >
+            <?php echo $this->content; ?>
+            <hr>
+            <footer align="right">
+                
+            </footer>
+        </div> <!-- /container -->
+        <?php echo $this->inlineScript() ?>
+    </body>
+</html>

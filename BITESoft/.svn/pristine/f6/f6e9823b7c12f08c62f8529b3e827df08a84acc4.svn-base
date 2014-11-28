@@ -1,0 +1,161 @@
+<?php
+
+namespace Produto\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Zend\Stdlib\Hydrator;
+
+/**
+ * @ORM\Table(name="fornecedores_produto")
+ * @ORM\Entity
+ * @ORM\HasLifecycleCallbacks
+ * @ORM\Entity(repositoryClass="Produto\Entity\FornecedorRepository")
+ *
+ */
+class Fornecedor {
+
+    /**
+     *@ORM\Id
+     *@ORM\Column(type="integer")
+     *@ORM\GeneratedValue
+     */
+    protected $id;
+    
+    /**
+     *@ORM\Column(type="text")
+     *@var string
+     */
+    protected $descricao;
+    
+    /**
+     *@ORM\Column(type="text", length=50)
+     *@var string
+     */
+    protected $apelido;
+    
+    /**
+     *@ORM\Column(type="text")
+     *@var string
+     */
+    protected $cnpj;
+    
+    /**
+     *@ORM\Column(type="text")
+     *@var string
+     */
+    protected $endereco;
+    
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(type="boolean")
+     */
+    private $ativo;
+    
+    /**
+     *@ORM\Column(type="datetime", name="created_at")
+     */
+    protected $createdAt;
+    
+    /**
+     *@ORM\Column(type="datetime", name="updated_at")
+     */
+    protected $updatedAt;
+    
+    
+    public function __construct($options = array()){
+        (new Hydrator\ClassMethods)->hydrate($options, $this);
+        
+        $this->createdAt = new \DateTime("now");
+        $this->updatedAt = new \DateTime("now");
+    }
+
+
+    public function getId() {
+        return $this->id;
+    }
+
+    public function getDescricao() {
+        return $this->descricao;
+    }
+
+    public function getApelido() {
+        return $this->apelido;
+    }
+
+    public function getCnpj() {
+        return $this->cnpj;
+    }
+
+    public function getEndereco() {
+        return $this->endereco;
+    }
+
+    public function getAtivo() {
+        return $this->ativo;
+    }
+
+    public function setId($id) {
+        $this->id = $id;
+        return $this;
+    }
+
+    public function setDescricao($descricao) {
+        $this->descricao = $descricao;
+        return $this;
+    }
+
+    public function setApelido($apelido) {
+        $this->apelido = $apelido;
+        return $this;
+    }
+
+    public function setCnpj($cnpj) {
+        $this->cnpj = $cnpj;
+        return $this;
+    }
+
+    public function setEndereco($endereco) {
+        $this->endereco = $endereco;
+        return $this;
+    }
+
+    public function setAtivo($ativo) {
+        $this->ativo = $ativo;
+        return $this;
+    }
+
+    
+    public function getCreatedAt() {
+        return $this->createdAt;
+    }
+
+    public function getUpdatedAt() {
+        return $this->updatedAt;
+    }
+
+    /**
+    * @ORM\prePersist
+    */
+    public function setCreatedAt() {
+        $this->createdAt = new \DateTime("now");
+        return $this;
+    }
+
+    /**
+    * @ORM\prePersist
+    */
+    public function setUpdatedAt() {
+        $this->updatedAt = new \DateTime("now");
+        return $this;
+    }
+
+    public function __toString(){
+        return $this->apelido;
+    }
+    
+    public function toArray(){
+        return (new Hydrator\ClassMethods)->extract($this);
+    }
+
+}

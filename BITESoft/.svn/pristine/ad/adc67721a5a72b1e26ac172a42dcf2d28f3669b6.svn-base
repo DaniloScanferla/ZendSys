@@ -1,0 +1,34 @@
+<h3>Login</h3>
+
+<br />
+
+<?php if($this->error): ?>
+<p class="alert alert-danger" align="center" id="alerta">Usuário ou senha inválidos</p>
+<?php endif; ?>
+
+<?php
+
+$form = $this->form;
+$form->setAttribute('action',$this->url('user-login'));
+$form->prepare();
+
+echo '<div style="padding-left:40%">';
+echo $this->form()->openTag($form);
+echo '<div class="row"><div class="col-lg-10">';
+    echo $this->formRow($form->get('email')).'</div><div class="col-lg-10">';
+    echo $this->formRow($form->get('password')).'</div><div class="col-lg-10">';
+    echo $this->formRow($form->get('submit')).'</div></div>';
+echo $this->form()->closeTag();
+echo '</div>';
+
+?>
+
+<!-- JS PARA FADE OUT DOS ALERTAS DE ID="alerta" -->
+		<script type="text/javascript">
+		    window.setTimeout(function() {
+			    $("#alerta").fadeTo(1500, 0).slideUp(500, function(){
+			        $(this).remove(); 
+			    });
+				}, 1000);
+		</script>
+<!-- FIM -->

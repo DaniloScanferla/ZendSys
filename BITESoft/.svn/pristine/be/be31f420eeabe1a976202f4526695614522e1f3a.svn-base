@@ -1,0 +1,32 @@
+<h3>Novo Tipo</h3>
+<br />
+
+<?php
+$form = $this->form;
+
+$form->setAttribute('action', $this->url("produto/default", array('controller'=>'tipos', 'action' => 'new')));
+
+$form->prepare();
+    echo $this->form()->openTag($form);
+    echo '<div class="row">';
+		echo'<div class="col-lg-15">';
+		    echo $this->formRow($form->get('id'));
+		echo'</div>';
+	echo '</div>';
+	echo '<div class="row">';
+		echo'<div class="col-lg-15">';
+		    echo $this->formRow($form->get('nome'));
+		echo'</div>';
+	echo '</div>';
+	echo '<div class="row">';
+		echo'<div class="col-lg-15">';
+		    echo $this->formRow($form->get('codigo'));
+		echo'</div>';
+	echo '</div>';
+	echo '<div class="row">';
+		echo'<div class="col-lg-15">';
+		    echo $this->formRow($form->get('submit'));
+		echo '</div>';
+	echo '</div>';
+    echo $this->form()->closeTag();
+?>

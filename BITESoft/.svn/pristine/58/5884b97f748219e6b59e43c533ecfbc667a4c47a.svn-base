@@ -1,0 +1,120 @@
+<?php
+namespace Acl;
+
+use Zend\Mvc\MvcEvent;
+
+use Zend\ModuleManager\ModuleManager;
+
+class Module
+{
+	
+    public function getConfig()
+    {
+        return include __DIR__ . '/config/module.config.php';
+    }
+
+    public function getAutoloaderConfig()
+    {
+        return array(
+            'Zend\Loader\StandardAutoloader' => array(
+                'namespaces' => array(
+                    __NAMESPACE__ => __DIR__ . '/src/' . __NAMESPACE__,
+                ),
+            ),
+        );
+    }
+    
+    public function init(ModuleManager $moduleManager){
+        
+        $sharedEvents = $moduleManager->getEventManager()->getSharedManager();
+        
+        $sharedEvents->attach("Zend\Mvc\Controller\AbstractActionController",
+                              MvcEvent::EVENT_ROUTE, 
+                              array($this, 'validateAcl'),
+                              99);
+    }
+    
+    public function validateAcl($e){
+        
+        $event      = $this->getEvent();
+        $match      = $event->getRouteMatch();
+        
+        
+        $controller = $match->getParam('controller');
+        $action     = $match->getParam('action');
+        $request    = $event->getRequest();
+        
+        
+        echo $controller;
+        echo $action;
+        echo $request;
+        die;
+        
+        //TODO acl here like:
+        //$acl = $this->getServiceLocator()->get('Acl\Permissions\Acl');
+        //
+        //echo $acl->isAllowed("Visitante", "Páginas", "Contratar")? break; : 
+        
+        $event->setError(static::CONTROLLER_ERROR);
+        $event->setParam('identity', $service->getIdentity());
+        $event->setParam('controller', $controller);
+        $event->setParam('action', $action);
+ 
+        $errorMessage = sprintf("You are not authorized to access %s:%s", $controller, $action);
+        $event->setParam('exception', new UnAuthorizedException($errorMessage));
+ 
+        /* @var $app \Zend\Mvc\ApplicationInterface */
+        $app = $event->getTarget();
+        $app->getEventManager()->trigger(MvcEvent::EVENT_DISPATCH_ERROR, $event);
+        
+        
+    }
+    
+    public function getServiceConfig(){
+        return array(
+          'factories' => array(
+            'Acl\Form\Role' => function($sm){
+                $em = $sm->get('Doctrine\ORM\EntityManager');
+                $repo = $em->getRepository('Acl\Entity\Role');
+                $parent = $repo->fetchParent();
+                
+                return new Form\Role('role', $parent);
+            },
+            'Acl\Form\Privilege' => function($sm){
+                $em = $sm->get('Doctrine\ORM\EntityManager');
+                $repoRoles = $em->getRepository('Acl\Entity\Role');
+                $roles = $repoRoles->fetchParent();
+                
+                $repoResources = $em->getRepository('Acl\Entity\Resource');
+                $resources = $repoResources->fetchPairs();
+                
+                return new Form\Privilege('privilege', $roles, $resources);
+            },
+            'Acl\Service\Role' => function($sm){
+                return new Service\Role($sm->get('Doctrine\ORM\EntityManager'));
+            },
+            'Acl\Service\Resource' => function($sm){
+                return new Service\Resource($sm->get('Doctrine\ORM\EntityManager'));
+            },
+            'Acl\Service\Privilege' => function($sm){
+                return new Service\Privilege($sm->get('Doctrine\ORM\EntityManager'));
+            },
+            'Acl\Permissions\Acl' => function($sm){
+                
+                $em = $sm->get('Doctrine\ORM\EntityManager');
+                
+                $repoRoles = $em->getRepository('Acl\Entity\Role');
+                $roles = $repoRoles->findAll();
+                
+                $repoResources = $em->getRepository('Acl\Entity\Resource');
+                $resources = $repoResources->findAll(); 
+                
+                $repoPrivileges = $em->getRepository('Acl\Entity\Privilege');
+                $privileges = $repoPrivileges->findAll(); 
+                
+                return new Permissions\Acl($roles, $resources, $privileges);
+            }
+          )  
+        );
+    }
+}

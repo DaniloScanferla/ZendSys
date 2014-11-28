@@ -1,0 +1,46 @@
+<h1><span class="glyphicon glyphicon-tasks"></span> Fornecedores</h1>
+<br />
+
+<p align="right">
+    <a class="btn btn-success" href="<?php echo $this->url("produto/default", array('controller' => 'fornecedores', 'action'=>'new')); ?>">Novo <span class="glyphicon glyphicon-plus"></span></a>
+</p>
+    
+<table class="table table-bordered table-hover table-striped table-responsive">
+    <tr>
+        <th><p align="center">ID</p></th>
+        <th><p align="center">Descrição</p></th>
+        <th><p align="center">Apelido</p></th>
+        <th><p align="center">CNPJ</p></th>
+        <th><p align="center">Endereço</p></th>
+        <th><p align="center">Ativo</p></th>
+        <th><p align="center">Editar</p></th>
+        <th><p align="center">Excluir</p></th>
+    </tr>
+    
+    <?php foreach($this->data as $entity): ?>
+    <tr align="center">
+        <td><?php echo $entity->getId(); ?></td>
+        <td><?php echo $entity->getDescricao(); ?></td>
+        <td><?php echo $entity->getApelido(); ?></td>
+        <td><?php echo $entity->getCnpj(); ?></td>
+        <td><?php echo $entity->getEndereco(); ?></td>
+        <td><?php echo $entity->getAtivo(); ?></td>
+        <td>
+                <a class="btn btn-xs btn-primary" href="<?php echo $this->url("produto/default",
+                        array('controller'=>'fornecedores', 'action'=>'edit', 'id'=>$entity->getId())); ?>">Editar <span class="glyphicon glyphicon-pencil"></span></a>
+            </td>
+            <td>
+                <a class="btn btn-xs btn-danger" href="<?php echo $this->url("produto/default",
+                        array('controller'=>'fornecedores', 'action'=>'delete', 'id'=>$entity->getId())); ?>">Excluir <span class="glyphicon glyphicon-trash"></span></a>
+            </td>
+    </tr>
+    <?php endforeach; ?>
+</table>
+
+<br />
+
+<div align="center">
+<?php echo $this->paginationControl($this->data, 'Sliding', 'partials/paginator'); ?>
+</div>
+
+

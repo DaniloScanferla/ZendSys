@@ -1,0 +1,52 @@
+<?php
+
+namespace Acl\Fixture;
+
+use Doctrine\Common\DataFixtures\AbstractFixture;
+use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
+use Acl\Entity\Resource;
+
+class LoadResource extends AbstractFixture implements OrderedFixtureInterface{
+    
+    public function getOrder() {
+        return 2;
+    }
+    
+    public function load(ObjectManager $manager) {
+        
+        $resource = new Resource;
+        $resource->setNome('Usuário');
+        $manager->persist($resource);
+        
+        $resource = new Resource;
+        $resource->setNome('Role');
+        $manager->persist($resource);
+        
+        $resource = new Resource;
+        $resource->setNome('Resource');
+        $manager->persist($resource);
+        
+        $resource = new Resource;
+        $resource->setNome('Privilege');
+        $manager->persist($resource);
+        
+        $resource = new Resource;
+        $resource->setNome('Produto');
+        $manager->persist($resource);
+        
+        $resource = new Resource;
+        $resource->setNome('Tipo');
+        $manager->persist($resource);
+        
+        $resource = new Resource;
+        $resource->setNome('Detalhe');
+        $manager->persist($resource);
+        
+        $resource = new Resource;
+        $resource->setNome('Fornecedor');
+        $manager->persist($resource);
+        
+        $manager->flush();
+    }
+}

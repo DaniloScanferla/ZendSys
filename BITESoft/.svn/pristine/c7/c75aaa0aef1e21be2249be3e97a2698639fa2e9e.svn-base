@@ -1,0 +1,42 @@
+<h1><span class="glyphicon glyphicon-sort"></span> Privilégios</h1>
+<br />
+
+<p align="right">
+    <a class="btn btn-success" href="<?php echo $this->url("acl-admin/default", array('controller' => 'privileges', 'action'=>'new')); ?>">Novo <span class="glyphicon glyphicon-plus"></span></a>
+</p>
+    
+<table class="table table-bordered table-hover table-striped table-responsive">
+    <tr>
+        <th><p align="center">ID</p></th>
+        <th><p align="center">Role</p></th>
+        <th><p align="center">Nome</p></th>
+        <th><p align="center">Resource</p></th>
+        <th><p align="center">Editar</p></th>
+        <th><p align="center">Excluir</p></th>
+    </tr>
+    
+    <?php foreach($this->data as $entity): ?>
+    <tr align="center">
+        <td><?php echo $entity->getId(); ?></td>
+        <td><?php echo $entity->getRole()->getNome(); ?></td>
+        <td><?php echo $entity->getNome(); ?></td>
+        <td><?php echo $entity->getResource()->getNome(); ?></td>
+        <td>
+                <a class="btn btn-xs btn-primary" href="<?php echo $this->url('acl-admin/default',
+                        array('controller'=>'privileges', 'action'=>'edit', 'id'=>$entity->getId())); ?>">Editar <span class="glyphicon glyphicon-pencil"></span></a>
+            </td>
+            <td>
+                <a class="btn btn-xs btn-danger" href="<?php echo $this->url('acl-admin/default',
+                        array('controller'=>'privileges', 'action'=>'delete', 'id'=>$entity->getId())); ?>">Excluir <span class="glyphicon glyphicon-trash"></span></a>
+            </td>
+    </tr>
+    <?php endforeach; ?>
+</table>
+
+<br />
+
+<div align="center" >
+<?php echo $this->paginationControl($this->data, 'Sliding', 'partials/paginator'); ?>
+</div>
+
+

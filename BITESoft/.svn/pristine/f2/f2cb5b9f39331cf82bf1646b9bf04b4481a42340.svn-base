@@ -1,0 +1,17 @@
+<?php
+
+namespace Produto\Controller;
+
+use Base\Controller\CrudController;
+
+class FornecedoresController extends CrudController{
+
+    public function __construct() {
+        $this->entity = "Produto\Entity\Fornecedor";
+        $this->service = "Produto\Service\Fornecedor";
+        $this->form = "Produto\Form\Fornecedor";
+        $this->controller = "fornecedores";
+        $this->route = "produto/default";
+    }
+    
+}

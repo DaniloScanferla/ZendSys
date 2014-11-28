@@ -1,0 +1,166 @@
+<?php
+
+namespace Acl\Fixture;
+
+use Doctrine\Common\DataFixtures\AbstractFixture;
+use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
+use Acl\Entity\Privilege;
+
+class LoadPrivilege extends AbstractFixture implements OrderedFixtureInterface{
+    
+    public function getOrder() {
+        return 3;
+    }
+    
+    public function load(ObjectManager $manager) {
+        
+        $privilege = new Privilege;
+        $privilege->setNome("Visualizar")
+                  ->setRole($role4 = $manager->getReference('Acl\Entity\Role', 1))
+                  ->setResource($manager->getReference('Acl\Entity\Resource', 1));
+        $manager->persist($privilege);
+        
+        $privilege = new Privilege;
+        $privilege->setNome("Novo / Editar")
+                  ->setRole($role4 = $manager->getReference('Acl\Entity\Role', 1))
+                  ->setResource($manager->getReference('Acl\Entity\Resource', 1));
+        $manager->persist($privilege);
+        
+        $privilege = new Privilege;
+        $privilege->setNome("Excluir")
+                  ->setRole($role4 = $manager->getReference('Acl\Entity\Role', 1))
+                  ->setResource($manager->getReference('Acl\Entity\Resource', 1));
+        $manager->persist($privilege);
+        
+        $privilege = new Privilege;
+        $privilege->setNome("Visualizar")
+                  ->setRole($role4 = $manager->getReference('Acl\Entity\Role', 1))
+                  ->setResource($manager->getReference('Acl\Entity\Resource', 2));
+        $manager->persist($privilege);
+        
+        $privilege = new Privilege;
+        $privilege->setNome("Novo / Editar")
+                  ->setRole($role4 = $manager->getReference('Acl\Entity\Role', 1))
+                  ->setResource($manager->getReference('Acl\Entity\Resource', 2));
+        $manager->persist($privilege);
+        
+        $privilege = new Privilege;
+        $privilege->setNome("Excluir")
+                  ->setRole($role4 = $manager->getReference('Acl\Entity\Role', 1))
+                  ->setResource($manager->getReference('Acl\Entity\Resource', 2));
+        $manager->persist($privilege);
+        
+        $privilege = new Privilege;
+        $privilege->setNome("Visualizar")
+                  ->setRole($role4 = $manager->getReference('Acl\Entity\Role', 1))
+                  ->setResource($manager->getReference('Acl\Entity\Resource', 3));
+        $manager->persist($privilege);
+        
+        $privilege = new Privilege;
+        $privilege->setNome("Novo / Editar")
+                  ->setRole($role4 = $manager->getReference('Acl\Entity\Role', 1))
+                  ->setResource($manager->getReference('Acl\Entity\Resource', 3));
+        $manager->persist($privilege);
+        
+        $privilege = new Privilege;
+        $privilege->setNome("Excluir")
+                  ->setRole($role4 = $manager->getReference('Acl\Entity\Role', 1))
+                  ->setResource($manager->getReference('Acl\Entity\Resource', 3));
+        $manager->persist($privilege);
+        
+        $privilege = new Privilege;
+        $privilege->setNome("Visualizar")
+                  ->setRole($role4 = $manager->getReference('Acl\Entity\Role', 1))
+                  ->setResource($manager->getReference('Acl\Entity\Resource', 4));
+        $manager->persist($privilege);
+        
+        $privilege = new Privilege;
+        $privilege->setNome("Novo / Editar")
+                  ->setRole($role4 = $manager->getReference('Acl\Entity\Role', 1))
+                  ->setResource($manager->getReference('Acl\Entity\Resource', 4));
+        $manager->persist($privilege);
+        
+        $privilege = new Privilege;
+        $privilege->setNome("Excluir")
+                  ->setRole($role4 = $manager->getReference('Acl\Entity\Role', 1))
+                  ->setResource($manager->getReference('Acl\Entity\Resource', 4));
+        $manager->persist($privilege);
+        
+        $privilege = new Privilege;
+        $privilege->setNome("Visualizar")
+                  ->setRole($role4 = $manager->getReference('Acl\Entity\Role', 1))
+                  ->setResource($manager->getReference('Acl\Entity\Resource', 5));
+        $manager->persist($privilege);
+        
+        $privilege = new Privilege;
+        $privilege->setNome("Novo / Editar")
+                  ->setRole($role4 = $manager->getReference('Acl\Entity\Role', 1))
+                  ->setResource($manager->getReference('Acl\Entity\Resource', 5));
+        $manager->persist($privilege);
+        
+        $privilege = new Privilege;
+        $privilege->setNome("Excluir")
+                  ->setRole($role4 = $manager->getReference('Acl\Entity\Role', 1))
+                  ->setResource($manager->getReference('Acl\Entity\Resource', 5));
+        $manager->persist($privilege);
+        
+        $privilege = new Privilege;
+        $privilege->setNome("Visualizar")
+                  ->setRole($role4 = $manager->getReference('Acl\Entity\Role', 1))
+                  ->setResource($manager->getReference('Acl\Entity\Resource', 6));
+        $manager->persist($privilege);
+        
+        $privilege = new Privilege;
+        $privilege->setNome("Novo / Editar")
+                  ->setRole($role4 = $manager->getReference('Acl\Entity\Role', 1))
+                  ->setResource($manager->getReference('Acl\Entity\Resource', 6));
+        $manager->persist($privilege);
+        
+        $privilege = new Privilege;
+        $privilege->setNome("Excluir")
+                  ->setRole($role4 = $manager->getReference('Acl\Entity\Role', 1))
+                  ->setResource($manager->getReference('Acl\Entity\Resource', 6));
+        $manager->persist($privilege);
+        
+        $privilege = new Privilege;
+        $privilege->setNome("Visualizar")
+                  ->setRole($role4 = $manager->getReference('Acl\Entity\Role', 1))
+                  ->setResource($manager->getReference('Acl\Entity\Resource', 7));
+        $manager->persist($privilege);
+        
+        $privilege = new Privilege;
+        $privilege->setNome("Novo / Editar")
+                  ->setRole($role4 = $manager->getReference('Acl\Entity\Role', 1))
+                  ->setResource($manager->getReference('Acl\Entity\Resource', 7));
+        $manager->persist($privilege);
+        
+        $privilege = new Privilege;
+        $privilege->setNome("Excluir")
+                  ->setRole($role4 = $manager->getReference('Acl\Entity\Role', 1))
+                  ->setResource($manager->getReference('Acl\Entity\Resource', 7));
+        $manager->persist($privilege);
+        
+        $privilege = new Privilege;
+        $privilege->setNome("Visualizar")
+                  ->setRole($role4 = $manager->getReference('Acl\Entity\Role', 1))
+                  ->setResource($manager->getReference('Acl\Entity\Resource', 8));
+        $manager->persist($privilege);
+        
+        $privilege = new Privilege;
+        $privilege->setNome("Novo / Editar")
+                  ->setRole($role4 = $manager->getReference('Acl\Entity\Role', 1))
+                  ->setResource($manager->getReference('Acl\Entity\Resource', 8));
+        $manager->persist($privilege);
+        
+        $privilege = new Privilege;
+        $privilege->setNome("Excluir")
+                  ->setRole($role4 = $manager->getReference('Acl\Entity\Role', 1))
+                  ->setResource($manager->getReference('Acl\Entity\Resource', 8));
+        $manager->persist($privilege);
+        
+        $manager->flush();
+    }
+     
+     
+}

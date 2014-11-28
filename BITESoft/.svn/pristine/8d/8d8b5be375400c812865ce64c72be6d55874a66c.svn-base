@@ -1,0 +1,44 @@
+<h3>Fornecedores</h3>
+<br />
+
+<p>
+    <a href="<?php echo $this->url("produto/default", array('controller' => 'fornecedores', 'action'=>'new')); ?>">Novo</a>
+</p>
+    
+<table class="table">
+    <tr>
+        <th>ID</th>
+        <th>Descrição</th>
+        <th>Apelido</th>
+        <th>CNPJ</th>
+        <th>Endereço</th>
+        <th>Ativo</th>
+        <th>Editar</th>
+        <th>Excluir</th>
+    </tr>
+    
+    <?php foreach($this->data as $entity): ?>
+    <tr>
+        <td><?php echo $entity->getId(); ?></td>
+        <td><?php echo $entity->getDescricao(); ?></td>
+        <td><?php echo $entity->getApelido(); ?></td>
+        <td><?php echo $entity->getCnpj(); ?></td>
+        <td><?php echo $entity->getEndereco(); ?></td>
+        <td><?php echo $entity->getAtivo(); ?></td>
+        <td>
+                <a href="<?php echo $this->url("produto/default",
+                        array('controller'=>'fornecedores', 'action'=>'edit', 'id'=>$entity->getId())); ?>">Editar</a>
+            </td>
+            <td>
+                <a href="<?php echo $this->url("produto/default",
+                        array('controller'=>'fornecedores', 'action'=>'delete', 'id'=>$entity->getId())); ?>">Excluir</a>
+            </td>
+    </tr>
+    <?php endforeach; ?>
+</table>
+
+<br />
+
+<?php echo $this->paginationControl($this->data, 'Sliding', 'partials/paginator'); ?>
+
+

@@ -1,0 +1,48 @@
+<?php
+namespace Produto;
+
+class Module
+{
+	
+    public function getConfig()
+    {
+        return include __DIR__ . '/config/module.config.php';
+    }
+
+    public function getAutoloaderConfig()
+    {
+        return array(
+            'Zend\Loader\StandardAutoloader' => array(
+                'namespaces' => array(
+                    __NAMESPACE__ => __DIR__ . '/src/' . __NAMESPACE__,
+                ),
+            ),
+        );
+    }
+    
+    public function getServiceConfig(){
+        return array(
+          'factories' => array(
+            'Produto\Form\Produto' => function($sm){
+                $em = $sm->get('Doctrine\ORM\EntityManager');
+                $repoTipo = $em->getRepository('Produto\Entity\Tipo');
+                $types = $repoTipo->fetchPairs();
+                
+                return new Form\Produto('produto', $types);
+            },  
+            'Produto\Service\Produto' => function($sm){
+                return new Service\Produto($sm->get('Doctrine\ORM\EntityManager'));
+            },
+            'Produto\Service\Tipo' => function($sm){
+                return new Service\Tipo($sm->get('Doctrine\ORM\EntityManager'));
+            },
+            'Produto\Service\Fornecedor' => function($sm){
+                return new Service\Fornecedor($sm->get('Doctrine\ORM\EntityManager'));
+            },
+            'Produto\Service\Detalhe' => function($sm){
+                return new Service\Detalhe($sm->get('Doctrine\ORM\EntityManager'));
+            }, 
+          )  
+        );
+    }
+}

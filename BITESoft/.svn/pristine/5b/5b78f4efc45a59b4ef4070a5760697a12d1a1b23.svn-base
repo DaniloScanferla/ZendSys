@@ -1,0 +1,89 @@
+<?php echo $this->doctype(); ?>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <?php echo $this->headTitle('ZF2 '. $this->translate('Skeleton Application'))->setSeparator(' - ')->setAutoEscape(false) ?>
+
+        <?php echo $this->headMeta()
+            ->appendName('viewport', 'width=device-width, initial-scale=1.0')
+            ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
+        ?>
+
+        <!-- Le styles -->
+        <?php echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/favicon.ico'))
+                        ->prependStylesheet($this->basePath() . '/css/style.css')
+                        ->prependStylesheet($this->basePath() . '/css/bootstrap-theme.min.css')
+                        ->prependStylesheet($this->basePath() . '/css/bootstrap.min.css') ?>
+
+        <!-- Scripts -->
+        <?php echo $this->headScript()
+            ->prependFile($this->basePath() . '/js/bootstrap.min.js')
+            ->prependFile($this->basePath() . '/js/jquery.min.js')
+            ->prependFile($this->basePath() . '/js/respond.min.js', 'text/javascript', array('conditional' => 'lt IE 9',))
+            ->prependFile($this->basePath() . '/js/html5shiv.js',   'text/javascript', array('conditional' => 'lt IE 9',))
+        ; ?>
+
+    </head>
+    <body>
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="container-fluid ">
+                <div class="navbar-header">
+						<a class="navbar-brand" href="<?php echo $this->url('home') ?>">
+							<strong> WMS </strong> 
+						</a>
+				</div>
+				<div class="navbar-btn navbar-right btn-group" style="padding-right: 15px">
+						<button class="btn btn-default dropdown-toggle " data-toggle="dropdown">
+							<span class="glyphicon glyphicon-user"></span>
+							<span class="caret"></span>
+							
+						</button>
+						<ul class="dropdown-menu" role="menu">
+							<li>
+								<a href="#"><span class="glyphicon glyphicon-th-large"></span> Dashboard</a>
+							</li>
+							<li>
+								<a href="<?php echo $this->url('user-admin') ?>"><span class="glyphicon glyphicon-cog"></span> Administrar Usuários</a>
+							</li>
+							<li class="divider"></li>
+							<li>
+								<a  href="<?php echo $this->url('user-logout') ?>"><span class="glyphicon glyphicon-share"></span> Sair</a>
+							</li>
+						</ul>
+                </div>                     
+                
+                    <ul class="nav navbar-nav navbar">
+                        
+                        <?php if($this->userIdentity("User")): ?>
+                        <li class="icon-bar"><a href="<?php echo $this->url('home') ?>"><?php echo 'Home ' ?><span class="glyphicon glyphicon-home"></span></a></li>
+                        
+                        <li class="icon-bar"><a href="<?php echo $this->url('produto/default', array('controller' => 'produtos', 'action' => 'index', 'id' => 1)) ?>"><?php echo 'Produto ' ?></a></li>
+                        <li class="icon-bar"><a href="<?php echo $this->url('produto/default', array('controller' => 'tipos', 'action' => 'index', 'id' => 1)) ?>"><?php echo 'Tipo' ?></a></li>
+                        <li class="icon-bar"><a href="<?php echo $this->url('produto/default', array('controller' => 'fornecedores', 'action' => 'index', 'id' => 1)) ?>"><?php echo 'Fornecedor' ?></a></li>
+                        <li class="icon-bar"><a href="<?php echo $this->url('produto/default', array('controller' => 'detalhes', 'action' => 'index', 'id' => 1)) ?>"><?php echo 'Detalhe' ?></a></li>
+                        
+                        <!--<li class="icon-bar"><a href="<?php echo $this->url('user-admin') ?>"><?php echo 'Usuários' ?></a></li>-->
+                        
+                        <li class="icon-bar"><a href="<?php echo $this->url('acl-admin/default', array('controller' => 'roles', 'action' => 'index', 'id' => 1)) ?>"><?php echo 'Papeis' ?></a></li>
+                        <li class="icon-bar"><a href="<?php echo $this->url('acl-admin/default', array('controller' => 'resources', 'action' => 'index', 'id' => 1)) ?>"><?php echo 'Recursos' ?></a></li>
+                        <li class="icon-bar"><a href="<?php echo $this->url('acl-admin/default', array('controller' => 'privileges', 'action' => 'index', 'id' => 1)) ?>"><?php echo 'Privilegios' ?></a></li>
+                        
+						<!--<li><a href="<?php echo $this->url('user-logout') ?>"><?php echo 'Logout' ?></a></li>-->
+						
+                        
+                        <?php endif; ?>
+                    </ul>
+                
+            </div>
+        </nav>
+        <div class="container">
+            <?php echo $this->content; ?>
+            <hr>
+            <footer>
+                <p>&copy; BITESoft All rights reserved</p>
+            </footer>
+        </div> <!-- /container -->
+        <?php echo $this->inlineScript() ?>
+    </body>
+</html>

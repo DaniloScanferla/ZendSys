@@ -1,0 +1,33 @@
+<h1><span class="glyphicon glyphicon-sort"></span> Privilégios</h1>
+<br />
+
+<table class="table table-bordered table-hover table-striped table-responsive">
+    <tr>
+        <th><p align="center">ID</p></th>
+        <th><p align="center">Role</p></th>
+        <th><p align="center">Nome</p></th>
+        <th><p align="center">Resource</p></th>
+        <th><p align="center">Editar</p></th>
+    </tr>
+    
+    <?php foreach($this->data as $entity): ?>
+    <tr align="center">
+        <td><?php echo $entity->getId(); ?></td>
+        <td><?php echo $entity->getRole()->getNome(); ?></td>
+        <td><?php echo $entity->getNome(); ?></td>
+        <td><?php echo $entity->getResource()->getNome(); ?></td>
+        <td>
+            <a class="btn btn-xs btn-primary" href="<?php echo $this->url('acl-admin/default',
+                    array('controller'=>'privileges', 'action'=>'edit', 'id'=>$entity->getId())); ?>">Editar <span class="glyphicon glyphicon-pencil"></span></a>
+        </td>
+    </tr>
+    <?php endforeach; ?>
+</table>
+
+<br />
+
+<div align="center" >
+<?php echo $this->paginationControl($this->data, 'Sliding', 'partials/paginator'); ?>
+</div>
+
+

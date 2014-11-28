@@ -1,0 +1,25 @@
+<?php
+
+namespace User\Fixture;
+
+use Doctrine\Common\DataFixtures\AbstractFixture,
+    Doctrine\Common\Persistence\ObjectManager;
+    
+use User\Entity\User;
+
+class LoadUser extends AbstractFixture{
+    
+    public function load(ObjectManager $manager) {
+        
+        $user = new User();
+        $user->setNome("Admin")
+             ->setEmail("admin@admin.com")
+             ->setPassword("admin")
+             ->setActive(true);
+        
+        $manager->persist($user);
+        
+        $manager->flush();
+        
+    }
+}

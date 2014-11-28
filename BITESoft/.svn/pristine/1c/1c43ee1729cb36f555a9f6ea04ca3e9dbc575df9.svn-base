@@ -1,0 +1,49 @@
+<h3>Detalhes de Produto</h3>
+<br />
+
+<p align="right">
+    <a class="btn btn-success" href="<?php echo $this->url("produto/default", array('controller' => 'detalhes', 'action'=>'new')); ?>">Novo <span class="glyphicon glyphicon-plus"></span></a>
+</p>
+    
+<table class="table table-bordered table-condensed table-hover table-striped table-responsive">
+    <tr>
+        <th><p align="center">ID</p></th>
+        <th><p align="center">Comprimento</p></th>
+        <th><p align="center">Altura</p></th>
+        <th><p align="center">Largura</p></th>
+        <th><p align="center">Volume</p></th>
+        <th><p align="center">Peso</p></th>
+        <th><p align="center">Densidade</p></th>
+        <th><p align="center">Cor</p></th>
+        <th><p align="center">Editar</p></th>
+        <th><p align="center">Excluir</p></th>
+    </tr>
+    
+    <?php foreach($this->data as $entity): ?>
+    <tr>
+        <td align="center"><?php echo $entity->getId(); ?></td>
+        <td align="center"><?php echo $entity->getComprimento(); ?></td>
+        <td align="center"><?php echo $entity->getAltura(); ?></td>
+        <td align="center"><?php echo $entity->getLargura(); ?></td>
+        <td align="center"><?php echo $entity->getVolume(); ?></td>
+        <td align="center"><?php echo $entity->getPeso(); ?></td>
+        <td align="center"><?php echo $entity->getDensidade(); ?></td>
+        <td align="center"><?php echo $entity->getCor(); ?></td>
+        <td align="center">
+            <a class="btn btn-xs btn-primary" href="<?php echo $this->url("produto/default",
+                    array('controller'=>'detalhes', 'action'=>'edit', 'id'=>$entity->getId())); ?>">Editar <span class="glyphicon glyphicon-pencil"></span></a>
+        </td>
+        <td align="center">
+            <a class="btn btn-xs btn-danger" href="<?php echo $this->url("produto/default",
+                    array('controller'=>'detalhes', 'action'=>'delete', 'id'=>$entity->getId())); ?>">Excluir <span class="glyphicon glyphicon-trash"></span></a>
+        </td>
+    </tr>
+    <?php endforeach; ?>
+</table>
+
+<br />
+
+<div align="center">
+<?php echo $this->paginationControl($this->data, 'Sliding', 'partials/paginator'); ?>
+</div>
+

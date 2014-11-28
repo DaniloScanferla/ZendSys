@@ -1,0 +1,35 @@
+<?php
+
+namespace Produto\Fixture;
+
+use Doctrine\Common\DataFixtures\AbstractFixture;
+use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
+use Produto\Entity\Fornecedor;
+
+class LoadFornecedor extends AbstractFixture implements OrderedFixtureInterface{
+    
+    public function getOrder() {
+    }
+    
+    public function load(ObjectManager $manager) {
+        
+        $fornecedor = new Fornecedor;
+        $fornecedor->setDescricao('Fornecedor nivel 3 para equipamentos sensíveis');
+        $fornecedor->setApelido('FornecedorTeste1');
+        $fornecedor->setCnpj('5473682548');
+        $fornecedor->setEndereco('Bairro do Limoeiro Nº 57');
+        $fornecedor->setAtivo(TRUE);
+        $manager->persist($fornecedor);
+        
+        $fornecedor = new Fornecedor;
+        $fornecedor->setDescricao('Fornecedor nivel 5 para emergencias com tinta');
+        $fornecedor->setApelido('FornecedorTeste2');
+        $fornecedor->setCnpj('3425781326');
+        $fornecedor->setEndereco('Batcaverna, Gotham City');
+        $fornecedor->setAtivo(FALSE);
+        $manager->persist($fornecedor);
+        
+        $manager->flush();
+    }
+}

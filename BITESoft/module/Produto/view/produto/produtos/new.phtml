@@ -1,0 +1,14 @@
+<h3>Novo Produto</h3>
+<br />
+
+<?php
+$form = $this->form;
+
+$form->setAttribute('action', $this->url('produto/default', array('controller'=>'produtos', 'action' => 'new')));
+$form->setAttribute('class', '');
+
+$form->prepare();
+echo $this->form()->openTag($form);
+echo $this->formCollection($form);
+echo $this->form()->closeTag();
+?>

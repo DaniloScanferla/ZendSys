@@ -1,0 +1,38 @@
+<h3>Produtos</h3>
+<br />
+
+<p>
+    <a href="<?php echo $this->url("produto/default", array('controller' => 'produtos', 'action'=>'new')); ?>">Novo</a>
+</p>
+    
+<table class="table">
+    <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Tipo</th>
+        <th>Editar</th>
+        <th>Excluir</th>
+    </tr>
+    
+    <?php foreach($this->data as $entity): ?>
+    <tr>
+        <td><?php echo $entity->getId(); ?></td>
+        <td><?php echo $entity->getNome(); ?></td>
+        <td><?php echo $entity->getType()->getNome(); ?></td>
+        <td>
+                <a href="<?php echo $this->url('produto/default',
+                        array('controller'=>'produtos', 'action'=>'edit', 'id'=>$entity->getId())); ?>">Editar</a>
+            </td>
+            <td>
+                <a href="<?php echo $this->url('produto/default',
+                        array('controller'=>'produtos', 'action'=>'delete', 'id'=>$entity->getId())); ?>">Excluir</a>
+            </td>
+    </tr>
+    <?php endforeach; ?>
+</table>
+
+<br />
+
+<?php echo $this->paginationControl($this->data, 'Sliding', 'partials/paginator'); ?>
+
+

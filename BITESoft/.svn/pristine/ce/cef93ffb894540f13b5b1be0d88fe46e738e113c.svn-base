@@ -1,0 +1,45 @@
+<h1 align="center" style="padding-left: 20px">Login <span class="glyphicon glyphicon-lock"></span></h1>
+<br>
+
+
+<?php if($this->error): ?>
+<p class="alert alert-danger" align="center" id="alerta">Usuário ou senha inválidos</p>
+<?php endif; ?>
+
+<?php
+
+$form = $this->form;
+$form->setAttribute('action',$this->url('user-login'));
+$form->prepare();
+
+echo '<div style="padding-left:40%">';
+	echo $this->form()->openTag($form);
+	echo '<div class="row">';
+		echo'<div class="col-lg-15">';
+		    echo $this->formRow($form->get('email'));
+		echo'</div>';
+	echo '</div>';
+	echo '<div class="row">';
+		echo'<div class="col-lg-15">';
+		    echo $this->formRow($form->get('password'));
+		echo'</div>';
+	echo '</div>';
+	echo '<div class="row">';
+		echo'<div class="col-lg-15">';
+		    echo $this->formRow($form->get('submit'));
+		echo '</div>';
+	echo '</div>';
+	echo $this->form()->closeTag();
+echo '</div>';
+
+?>
+
+<!-- JS PARA FADE OUT DOS ALERTAS DE ID="alerta" -->
+		<script type="text/javascript">
+		    window.setTimeout(function() {
+			    $("#alerta").fadeTo(1500, 0).slideUp(500, function(){
+			        $(this).remove(); 
+			    });
+				}, 1000);
+		</script>
+<!-- FIM -->

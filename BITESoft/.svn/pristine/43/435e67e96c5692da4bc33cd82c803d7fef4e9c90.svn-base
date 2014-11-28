@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/wamp/www/projects/BITESoft/module/User/src/User/Entity/User.php</file>
+            <file>file:/C:/wamp/www/projects/BITESoft/module/User/src/User/Controller/AuthController.php</file>
+            <file>file:/C:/wamp/www/projects/BITESoft/module/User/src/User/Entity/UserRepository.php</file>
+            <file>file:/C:/wamp/www/projects/BITESoft/module/User/src/User/Form/Login.php</file>
+            <file>file:/C:/wamp/www/projects/BITESoft/module/User/view/user/auth/Index.phtml</file>
+            <file>file:/C:/wamp/www/projects/BITESoft/module/User/Module.php</file>
+            <file>file:/C:/wamp/www/projects/BITESoft/module/User/src/User/Auth/Adapter.php</file>
+            <file>file:/C:/wamp/www/projects/BITESoft/module/User/view/user/index/register.phtml</file>
+        </group>
+    </open-files>
+</project-private>

@@ -1,0 +1,11 @@
+<?php
+
+use Zend\View\Model\ViewModel;
+
+class HomeController
+{
+    public function indexAction()
+    {
+        return new ViewModel();
+    }
+}

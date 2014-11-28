@@ -1,0 +1,48 @@
+<h3>Detalhes de Produto</h3>
+<br />
+
+<p>
+    <a href="<?php echo $this->url("produto/default", array('controller' => 'detalhes', 'action'=>'new')); ?>">Novo</a>
+</p>
+    
+<table class="table">
+    <tr>
+        <th>ID</th>
+        <th>Comprimento</th>
+        <th>Altura</th>
+        <th>Largura</th>
+        <th>Volume</th>
+        <th>Peso</th>
+        <th>Densidade</th>
+        <th>Cor</th>
+        <th>Editar</th>
+        <th>Excluir</th>
+    </tr>
+    
+    <?php foreach($this->data as $entity): ?>
+    <tr>
+        <td><?php echo $entity->getId(); ?></td>
+        <td><?php echo $entity->getComprimento(); ?></td>
+        <td><?php echo $entity->getAltura(); ?></td>
+        <td><?php echo $entity->getLargura(); ?></td>
+        <td><?php echo $entity->getVolume(); ?></td>
+        <td><?php echo $entity->getPeso(); ?></td>
+        <td><?php echo $entity->getDensidade(); ?></td>
+        <td><?php echo $entity->getCor(); ?></td>
+        <td>
+            <a href="<?php echo $this->url("produto/default",
+                    array('controller'=>'detalhes', 'action'=>'edit', 'id'=>$entity->getId())); ?>">Editar</a>
+        </td>
+        <td>
+            <a href="<?php echo $this->url("produto/default",
+                    array('controller'=>'detalhes', 'action'=>'delete', 'id'=>$entity->getId())); ?>">Excluir</a>
+        </td>
+    </tr>
+    <?php endforeach; ?>
+</table>
+
+<br />
+
+<?php echo $this->paginationControl($this->data, 'Sliding', 'partials/paginator'); ?>
+
+

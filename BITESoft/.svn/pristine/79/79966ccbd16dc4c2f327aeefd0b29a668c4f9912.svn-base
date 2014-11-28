@@ -1,0 +1,71 @@
+<?php
+
+namespace Produto\Form;
+
+use Zend\Form\Form,
+    Zend\Form\Element;
+
+class Detalhe extends Form{
+    
+    public function __construct($name = null){
+        parent::__construct('detalhes');
+            
+        $this->setAttribute('method', 'post');
+        
+        $id = new \Zend\Form\Element\Hidden('id');
+        $this->add($id);
+        
+        $comprimento = new \Zend\Form\Element\Text('comprimento');
+        $comprimento->setLabel('Comprimento: ')
+             ->setAttribute('placeholder', 'Entre com o comprimento');
+        $this->add($comprimento);
+        
+        $altura = new \Zend\Form\Element\Text('altura');
+        $altura->setLabel('Altura: ')
+             ->setAttribute('placeholder', 'Entre com a altura');
+        $this->add($altura);
+        
+        $largura = new \Zend\Form\Element\Text('largura');
+        $largura->setLabel('Largura: ')
+             ->setAttribute('placeholder', 'Entre com a largura');
+        $this->add($largura);
+        
+        $volume = new \Zend\Form\Element\Text('volume');
+        $volume->setLabel('Volume: ')
+             ->setAttribute('placeholder', 'Entre com o volume');
+        $this->add($volume);
+        
+        $peso = new \Zend\Form\Element\Text('peso');
+        $peso->setLabel('Peso: ')
+             ->setAttribute('placeholder', 'Entre com o peso');
+        $this->add($peso);
+        
+        $densidade = new \Zend\Form\Element\Text('densidade');
+        $densidade->setLabel('Densidade:')
+             ->setAttribute('placeholder', 'Entre com a densidade');
+        $this->add($densidade);
+        
+        $cor = new \Zend\Form\Element\Text('cor');
+        $cor->setLabel('Cor: ')
+             ->setAttribute('placeholder', 'Entre com a cor');
+        $this->add($cor);
+        
+        $garantia = new \Zend\Form\Element\Month('garantia');
+        $garantia->setLabel('Garantia: ')
+                 ->setAttributes(array(
+                    'min'  => '2014-01',
+                    'max'  => '2050-01',
+                    'step' => '1'
+                ));
+        $this->add($garantia);
+        
+        $this->add(array(
+            'name' => 'submit',
+            'type' => 'Zend\Form\Element\Submit',
+            'attributes' => array(
+                'value' => 'Salvar',
+                'class' => 'btn-success'
+            )
+        ));
+    }
+}

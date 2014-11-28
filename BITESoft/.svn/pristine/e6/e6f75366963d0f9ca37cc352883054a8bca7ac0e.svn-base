@@ -1,0 +1,40 @@
+<?php
+
+namespace Produto\Fixture;
+
+use Doctrine\Common\DataFixtures\AbstractFixture;
+use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
+use Produto\Entity\Detalhe;
+
+class LoadDetalhe extends AbstractFixture implements OrderedFixtureInterface{
+    
+    public function getOrder() {
+    }
+    
+    public function load(ObjectManager $manager) {
+        
+        $detalhe = new Detalhe;
+        $detalhe->setComprimento(1);
+        $detalhe->setAltura(1);
+        $detalhe->setLargura(1);
+        $detalhe->setVolume(1);
+        $detalhe->setPeso(1);
+        $detalhe->setDensidade(1);
+        $detalhe->setCor("Branco");
+        $manager->persist($detalhe);
+        
+        $detalhe = new Detalhe;
+        $detalhe->setComprimento(3);
+        $detalhe->setAltura(3);
+        $detalhe->setLargura(3);
+        $detalhe->setVolume(3);
+        $detalhe->setPeso(3);
+        $detalhe->setDensidade(3);
+        $detalhe->setCor("Verde");
+        $manager->persist($detalhe);
+
+        
+        $manager->flush();
+    }
+}

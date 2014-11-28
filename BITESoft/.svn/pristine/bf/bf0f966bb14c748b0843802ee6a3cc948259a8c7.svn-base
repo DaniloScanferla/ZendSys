@@ -1,0 +1,39 @@
+<h1><span class="glyphicon glyphicon-user"></span></a> Usuários</h1>
+
+<br/>
+
+<p align="right">
+    <a class="btn btn-success" href="<?php echo $this->url('user-admin/default', array('action'=>'new')); ?>">Novo <span class="glyphicon glyphicon-plus"></span></a>
+</p>
+
+<table class="table table-bordered table-hover table-striped table-responsive">
+    <tr>
+        <th><p align="center">ID</p></th>
+        <th><p align="center">Nome</p></th>
+        <th><p align="center">Email</p></th>
+        <th><p align="center">Editar</p></th>
+        <th><p align="center">Excluir</p></th>
+    </tr>
+    
+    <?php foreach($this->data as $entity): ?>
+        <tr>
+            <td align="center"><?php echo $entity->getId(); ?></td>
+            <td align="center"><?php echo $entity->getNome(); ?></td>
+            <td align="center"><?php echo $entity->getEmail(); ?></td>
+            <td align="center">
+                <a class="btn btn-xs btn-primary" href="<?php echo $this->url('user-admin/default',
+                        array('controller'=>'users', 'action'=>'edit', 'id'=>$entity->getId())); ?>">Editar <span class="glyphicon glyphicon-pencil"></span></a>
+            </td>
+            <td align="center">
+                <a class="btn btn-xs btn-danger" href="<?php echo $this->url('user-admin/default',
+                        array('controller'=>'users', 'action'=>'delete', 'id'=>$entity->getId())); ?>">Excluir <span class="glyphicon glyphicon-trash"></span></a>
+            </td>
+        </tr>
+    <?php endforeach; ?>
+</table>
+
+<br />
+
+<div align="center">
+<?php echo $this->paginationControl($this->data, 'Sliding', 'partials/paginator'); ?>
+</div>

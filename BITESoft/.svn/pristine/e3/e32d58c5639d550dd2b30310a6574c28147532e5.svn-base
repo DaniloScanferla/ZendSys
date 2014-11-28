@@ -1,0 +1,162 @@
+<?php
+
+namespace Produto\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Zend\Stdlib\Hydrator;
+
+/**
+ * @ORM\Table(name="detalhes_produto")
+ * @ORM\Entity
+ * @ORM\HasLifecycleCallbacks
+ * @ORM\Entity(repositoryClass="Produto\Entity\DetalheRepository")
+ *
+ */
+class Detalhe {
+
+    /**
+     *@ORM\Id
+     *@ORM\Column(type="integer")
+     *@ORM\GeneratedValue
+     */
+    protected $id;
+    
+    /**
+     *@ORM\Column(type="integer")
+     *@var int
+     */
+    protected $comprimento;
+    
+    /**
+     *@ORM\Column(type="integer")
+     *@var int
+     */
+    protected $altura;
+    
+    /**
+     *@ORM\Column(type="integer")
+     *@var int
+     */
+    protected $largura;
+    
+    /**
+     *@ORM\Column(type="integer")
+     *@var int
+     */
+    protected $volume;
+    
+    /**
+     *@ORM\Column(type="integer")
+     *@var int
+     */
+    protected $peso;
+    
+    /**
+     *@ORM\Column(type="integer")
+     *@var int
+     */
+    protected $densidade;
+    
+    /**
+     *@ORM\Column(type="text")
+     *@var string
+     */
+    protected $cor;
+    
+    /**
+     *@ORM\Column(type="datetime", nullable=true)
+     */
+    protected $garantia;
+    
+    
+    public function __construct($options = array()){
+        (new Hydrator\ClassMethods)->hydrate($options, $this);
+    }
+
+
+    public function getId() {
+        return $this->id;
+    }
+
+    public function getComprimento() {
+        return $this->comprimento;
+    }
+
+    public function getAltura() {
+        return $this->altura;
+    }
+
+    public function getLargura() {
+        return $this->largura;
+    }
+
+    public function getVolume() {
+        return $this->volume;
+    }
+
+    public function getPeso() {
+        return $this->peso;
+    }
+
+    public function getDensidade() {
+        return $this->densidade;
+    }
+
+    public function getCor() {
+        return $this->cor;
+    }
+
+    public function getGarantia() {
+        return $this->garantia;
+    }
+
+    public function setId($id) {
+        $this->id = $id;
+        return $this;
+    }
+
+    public function setComprimento($comprimento) {
+        $this->comprimento = $comprimento;
+        return $this;
+    }
+
+    public function setAltura($altura) {
+        $this->altura = $altura;
+        return $this;
+    }
+
+    public function setLargura($largura) {
+        $this->largura = $largura;
+        return $this;
+    }
+
+    public function setVolume($volume) {
+        $this->volume = $volume;
+        return $this;
+    }
+
+    public function setPeso($peso) {
+        $this->peso = $peso;
+        return $this;
+    }
+
+    public function setDensidade($densidade) {
+        $this->densidade = $densidade;
+        return $this;
+    }
+
+    public function setCor($cor) {
+        $this->cor = $cor;
+        return $this;
+    }
+
+    public function setGarantia($garantia) {
+        $this->garantia = $garantia;
+        return $this;
+    }
+    
+    public function toArray(){
+        return (new Hydrator\ClassMethods)->extract($this);
+    }
+
+}

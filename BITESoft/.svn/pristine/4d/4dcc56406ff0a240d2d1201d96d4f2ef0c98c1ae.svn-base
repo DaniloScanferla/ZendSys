@@ -1,0 +1,17 @@
+<?php
+
+namespace Produto\Controller;
+
+use Base\Controller\CrudController;
+
+class DetalhesController extends CrudController{
+
+    public function __construct() {
+        $this->entity = "Produto\Entity\Detalhe";
+        $this->service = "Produto\Service\Detalhe";
+        $this->form = "Produto\Form\Detalhe";
+        $this->controller = "detalhes";
+        $this->route = "produto/default";
+    }
+    
+}

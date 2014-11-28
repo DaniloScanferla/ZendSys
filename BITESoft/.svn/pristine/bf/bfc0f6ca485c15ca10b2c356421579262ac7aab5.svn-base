@@ -1,0 +1,32 @@
+<h3>Novo Tipo</h3>
+<br />
+
+<?php
+    $form = $this->form;
+    
+    $form->setAttribute('action', $this->url("produto/default", array('controller'=>'tipos', 'action' => 'new')));
+    
+    $form->prepare();
+    echo $this->form()->openTag($form);
+
+    echo "<div class=\"form-group\">";
+    echo $this->formRow($form->get('id'));
+    echo "</div>";
+
+    echo "<div class=\"form-group\">";
+    echo $this->formLabel($form->get('nome'));
+    echo $this->formInput($form->get('nome'));
+    echo $this->formElementErrors($form->get("nome"), array('class' => "alert alert-danger list-unstyled alert-field", 'message' => "errormessage"));
+    echo "</div>";
+
+    echo "<div class=\"form-group\">";
+    echo $this->formLabel($form->get('codigo'));
+    echo $this->formInput($form->get('codigo'));
+    echo $this->formElementErrors($form->get("codigo"), array('class' => "alert alert-danger list-unstyled alert-field", 'message' => "errormessage"));
+    echo "</div>";
+
+
+    echo $this->formRow($form->get('submit'));
+
+    echo $this->form()->closeTag();
+?>
