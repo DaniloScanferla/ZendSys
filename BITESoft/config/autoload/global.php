@@ -12,16 +12,4 @@
  */
 
 return array(
-    'mail' => array(
-        'name' => 'smtp.googlemail.com',
-        'host' => 'smtp.googlemail.com',
-        'connection_class' => 'login',
-        'connection_config' => array(
-            'username' => 'daniloscanferla@gmail.com',
-            'password' => 'cam1lacam1la',
-            'ssl' => 'tls',
-            'port' => 587,
-            'from' => 'daniloscanferla@gmail.com'
-        )
-    )
 );
